@@ -1,4 +1,3 @@
-```markdown
 # PDF to Markdown Extraction Pipeline
 
 A modular and layout-aware PDF extraction system with region-based OCR fallback. Designed to convert complex PDFs—including scanned documents—into structured Markdown, preserving text, tables, and images.
