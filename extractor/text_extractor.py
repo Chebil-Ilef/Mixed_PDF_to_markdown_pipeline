@@ -1,4 +1,3 @@
-### --- extractor/text_extractor.py ---
 import fitz  # PyMuPDF
 import pdfplumber
 

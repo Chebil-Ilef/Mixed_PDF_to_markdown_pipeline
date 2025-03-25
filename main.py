@@ -1,5 +1,3 @@
-### --- main.py ---
-import os
 from pathlib import Path
 from extractor.text_extractor import extract_text
 from extractor.image_extractor import extract_images
