@@ -277,8 +277,6 @@ general privacy score.
 
 <span style='color:#1154cc'><strong>2) Data distribution : [3], [4]</strong></span>
 
-**Table. encryption types effects on privacy
-**
 | encyrption | type | presence | degree | effect on
 privacy |
 |---|---|---|---|---|
