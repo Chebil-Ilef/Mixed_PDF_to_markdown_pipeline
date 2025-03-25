@@ -142,6 +142,22 @@ SB = 3.311 + .265*SA +.255*MS x SC
 
 
 
+[OCR fallback]
+[OCR region] praclices.
+Security Effectiveness SE— The ability
+access and breaches.
+were integrated into a weighted «
+gement Support, and Security Culture co:
+The final compliance score refle
+ates.
+[OCR region] 1) Reg
+a.
+The authors ou
+health data, ult
+[8]
+The authors co
+
+
 ### Page 3
 
 <span style='color:#ff0000'>Limits:</span>
@@ -273,6 +289,19 @@ general privacy score.
 
 
 
+[OCR fallback]
+[OCR region] 2. derived and weights to Cal
+Limits:
+o The article does not provide an automated method
+nrecence and of X1 in
+[OCR region] 94.74%
+[OCR region] Table 4 Round 2 results for Like
+Item identifier Median
+112
+[OCR region] Table 4 Round 2
+Item identifier
+
+
 ### Page 5
 
 <span style='color:#1154cc'><strong>2) Data distribution : [3], [4]</strong></span>
@@ -366,6 +395,15 @@ by the challenge of protecting sensitive patient data while enabling high-perfor
 
 and storage in hospital systems.
 
+
+
+[OCR fallback]
+[OCR region] 2) Dat
+From multiple
+privacy, securi
+privacy risk mi:
+The authors of
+integration ben
 
 
 ### Page 6
@@ -483,6 +521,16 @@ non-uniform importance  of metrics.
 ![Image](./images/page7_img1.png)
 
 
+[OCR fallback]
+[OCR region] They also prop
+metrics for
+Key findings :
+- Privac
+for imu
+- The a
+1. Unc
+
+
 ### Page 8
 
 figure 3. Taxonomy of privacy metrics, classified by output [6]
@@ -538,6 +586,12 @@ Table 1. Summary of Research Directions for QID Recognition [13]
 
 unstable and partially abandoned.
 
+
+
+[OCR fallback]
+[OCR region] LLMs use justification: [13]
+conducted a comprehensive study exp
+using multiple techniques, including «
 
 
 ### Page 9
@@ -617,6 +671,12 @@ Table 2. Jaccard Indexes for QIDs, SAs, and NSAs [13]
 
 
 
+[OCR fallback]
+[OCR region] |
+was evaluated under three levels of context:
+1 Attribute only
+
+
 ### Page 10
 
 <span style='color:#ff0000'>Integration in our workflow :</span>
@@ -670,6 +730,14 @@ components— <strong>regulatory context</strong> , <strong>data distribution</s
 
 
 
+[OCR fallback]
+[OCR region] Integration in
+LLMs
+classify
+comput
+and col
+
+
 ### Page 11
 
 The <span style='color:#37751c'>regulatory context</span> branch incorporates both GDPR and HIPAA, using validated scoring
@@ -714,6 +782,17 @@ recommending tailored Privacy Solutions .
 
 ## <span style='color:#664ea6'><strong>conducted once phase 1 is done): [4]</strong></span>
 
+
+
+[OCR fallback]
+[OCR region] The regulatory
+models like the
+Security
+institutional fa
+The data distri
+architectures (1
+Encryption typ
+earning the hio
 
 
 ### Page 12

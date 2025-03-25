@@ -1,4 +1,6 @@
-import fitz  # PyMuPDF
+from difflib import SequenceMatcher
+import re
+import fitz
 import cv2
 import numpy as np
 from PIL import Image
@@ -11,6 +13,7 @@ def check_completeness(pdf_path, extracted_text_blocks, image_refs):
     for page_num in range(len(doc)):
         page = doc[page_num]
         page_issues = {"text": False, "images": False, "tables": False}
+        missing_regions = []
 
         # --- IMAGE CHECK ---
         expected_images = page.get_images(full=True)
@@ -22,7 +25,7 @@ def check_completeness(pdf_path, extracted_text_blocks, image_refs):
         if found < len(expected_images):
             page_issues["images"] = True
 
-        # --- TABLE CHECK (OpenCV line detection) ---
+        # --- TABLE CHECK (OpenCV) ---
         pix = page.get_pixmap(dpi=200)
         img = Image.open(io.BytesIO(pix.tobytes("png"))).convert("L")
         img_np = np.array(img)
@@ -38,14 +41,17 @@ def check_completeness(pdf_path, extracted_text_blocks, image_refs):
         )
 
         contours, _ = cv2.findContours(detected_lines, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        possible_tables = [c for c in contours if cv2.contourArea(c) > 5000]  # filter small boxes
+        possible_tables = [c for c in contours if cv2.contourArea(c) > 5000]
 
-        table_found = len(possible_tables)
         markdown = extracted_text_blocks[page_num] if page_num < len(extracted_text_blocks) else ""
-        if table_found > 0 and markdown.count("|") < table_found * 3:
+        markdown_tables = re.findall(r"\|(.+)\|", markdown)
+        if len(possible_tables) > 0 and len(markdown_tables) < len(possible_tables):
             page_issues["tables"] = True
+            for c in possible_tables:
+                x, y, w, h = cv2.boundingRect(c)
+                missing_regions.append({"bbox": [x, y, x + w, y + h]})
 
-        # --- TEXT CHECK ---
+        # --- TEXT CHECK (fuzzy similarity) ---
         text_dict = page.get_text("dict")
         raw_text = " ".join(
             span["text"]
@@ -55,14 +61,17 @@ def check_completeness(pdf_path, extracted_text_blocks, image_refs):
         ).strip()
 
         extracted_text = extracted_text_blocks[page_num] if page_num < len(extracted_text_blocks) else ""
-        words_in_raw = set(raw_text.split())
-        words_in_extracted = set(extracted_text.split())
-        missing_words = words_in_raw - words_in_extracted
+        similarity = SequenceMatcher(None, raw_text, extracted_text).ratio()
 
-        if len(missing_words) / max(1, len(words_in_raw)) > 0.1:
+        if similarity < 0.85:
             page_issues["text"] = True
+            missing_regions.append({"bbox": [0, 0, page.rect.width, page.rect.height]})
 
         if any(page_issues.values()):
-            issues_by_page[page_num] = page_issues
+            issues_by_page[page_num] = {
+                **page_issues,
+                "suspicious": True,
+                "missing_regions": missing_regions
+            }
 
     return issues_by_page

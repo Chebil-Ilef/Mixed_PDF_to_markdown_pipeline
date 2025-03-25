@@ -1,3 +1,4 @@
+
 def merge_ocr_results(text_blocks, ocr_results):
     for page_num, ocr_text in ocr_results.items():
         if page_num < len(text_blocks):
